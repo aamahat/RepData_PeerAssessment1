@@ -35,7 +35,7 @@ Make a histogram of the total number of steps taken each day
 hist (daily_steps, 20, col="red", main = "Total Number of Steps Per Day", xlab = "Daily Steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)
+![plot](Graphs/plot1.png)
 
 Calculate and report the mean and median of the total number of steps taken per day
 
@@ -71,7 +71,7 @@ plot(y = avg_data, x = names(avg_data), type = "l",
      ylab = "Average number of Steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-6-1.png)
+![plot](Graphs/plot2.png)
 
 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -110,7 +110,7 @@ imputed_daily_steps <- tapply(imputed_data$steps, imputed_data$date, sum)
 hist (imputed_daily_steps, 20, col="red", main = "Total Number of Steps Per Day (Imputed)", xlab = "Daily Steps (Imputed)")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-10-1.png)
+![plot](Graphs/plot3.png)
 
 Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 Solution: Mean value remained intact to 10766.19 whereas there is slight increase in the Median i.e. before it was 10765 and after it is 10766.19
@@ -199,5 +199,5 @@ g <- ggplot(avg_data_final, aes(x=interval, y=steps, col = weektype)) +
 print (g)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-13-1.png)
+![plot](Graphs/plot4.png)
 
