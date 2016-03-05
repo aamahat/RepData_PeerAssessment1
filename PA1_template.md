@@ -1,5 +1,9 @@
+Preparing the environment
 
-
+```r
+library(knitr)
+opts_chunk$set(echo = TRUE, results = 'hold')
+```
 ## Loading and preprocessing the data
 
 Load the data (i.e. read.csv())
@@ -17,6 +21,8 @@ Solution: Processing/transforming the Date field
 
 ```r
 str(data)
+data$date <- as.Date(data$date)
+str(data)
 ```
 
 ```
@@ -24,14 +30,6 @@ str(data)
 ##  $ steps   : int  NA NA NA NA NA NA NA NA NA NA ...
 ##  $ date    : Factor w/ 61 levels "2012-10-01","2012-10-02",..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ interval: int  0 5 10 15 20 25 30 35 40 45 ...
-```
-
-```r
-data$date <- as.Date(data$date)
-str(data)
-```
-
-```
 ## 'data.frame':	17568 obs. of  3 variables:
 ##  $ steps   : int  NA NA NA NA NA NA NA NA NA NA ...
 ##  $ date    : Date, format: "2012-10-01" "2012-10-01" ...
@@ -83,18 +81,12 @@ Calculate and report the mean and median of the total number of steps taken per 
 ```r
 mean_daily_steps <- mean(daily_steps)
 mean_daily_steps
-```
-
-```
-## [1] 10766.19
-```
-
-```r
 median_daily_steps <- median(daily_steps)
 median_daily_steps
 ```
 
 ```
+## [1] 10766.19
 ## [1] 10765
 ```
 
@@ -174,34 +166,16 @@ From impact point of view, with the imputed data i.e. after filling in missing v
 ```r
 mean_imputed_daily_steps <- mean(imputed_daily_steps)
 mean_daily_steps
-```
-
-```
-## [1] 10766.19
-```
-
-```r
 mean_imputed_daily_steps
-```
-
-```
-## [1] 10766.19
-```
-
-```r
 median_imputed_daily_steps <- median(imputed_daily_steps)
 median_daily_steps
-```
-
-```
-## [1] 10765
-```
-
-```r
 median_imputed_daily_steps
 ```
 
 ```
+## [1] 10766.19
+## [1] 10766.19
+## [1] 10765
 ## [1] 10766.19
 ```
 

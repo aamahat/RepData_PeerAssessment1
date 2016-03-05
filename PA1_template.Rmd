@@ -4,8 +4,11 @@ output:
   html_document:
     keep_md: true
 ---
-
-
+Preparing the environment
+```{R}
+library(knitr)
+opts_chunk$set(echo = TRUE, results = 'hold')
+```
 ## Loading and preprocessing the data
 
 Load the data (i.e. read.csv())
