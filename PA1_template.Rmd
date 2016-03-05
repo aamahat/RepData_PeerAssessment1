@@ -1,5 +1,5 @@
 ---
-title: "Reproducible Research: Peer Assessment 1"
+Title: "Reproducible Research: Peer Assessment 1"
 output: 
   html_document:
     keep_md: true
@@ -17,9 +17,12 @@ data <- read.csv("activity.csv")
 ```
 
 Process/transform the data (if necessary) into a format suitable for your analysis
+
 Solution: Processing/transforming the Date field
 ```{R}
+str(data)
 data$date <- as.Date(data$date)
+str(data)
 ```
 
 
@@ -29,6 +32,7 @@ Calculate the total number of steps taken per day
 ```{R}
 tidy_data <- data[!is.na(data$steps),]
 daily_steps <- tapply(tidy_data$steps, tidy_data$date, sum)
+daily_steps
 ```
 
 Make a histogram of the total number of steps taken each day
@@ -68,6 +72,7 @@ max_steps_5minint
 Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 ```{R}
 missing_values <- length(which(is.na(data$steps)))
+missing_values
 ```
 
 Devise a strategy for filling in all of the missing values in the dataset.
@@ -78,7 +83,10 @@ Solution: Missing values will be filled with the mean of 5 minute interval
 imputed_data <- data
 imputed_data[which(is.na(imputed_data$steps)),1] <- avg_data[as.character(imputed_data[which(is.na(imputed_data$steps)),3])]
 ```
-
+Assuring that there is no more missing values
+```{R}
+length(which(is.na(imputed_data$steps)))
+```
 Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day.  
 ```{R}
 imputed_daily_steps <- tapply(imputed_data$steps, imputed_data$date, sum)
@@ -87,6 +95,7 @@ hist (imputed_daily_steps, 20, col="red", main = "Total Number of Steps Per Day 
 ```
 
 Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
+
 Solution: Mean value remained intact to 10766.19 whereas there is slight increase in the Median i.e. before it was 10765 and after it is 10766.19
 From impact point of view, with the imputed data i.e. after filling in missing values, Median got slightly increased. 
 ```{R}
